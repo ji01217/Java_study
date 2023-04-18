@@ -56,3 +56,149 @@ public class Hello {
 ### 프로젝트 구조
 
 - HappyJava 프로젝트 폴더 아래에 out 폴더가 생성되고 그 아래에 또 몇가지 폴더가 생성된 후, Hello.class 파일이 생성된 것을 알 수 있다. IntelliJ가 Hello 클래스를 실행하면 아래의 경로에 컴파일한 결과물을 생성하고, 해당 클래스를 실행하게 된다.
+
+### 이름, 이메일, 성별 출력하기
+
+1. 다음과 같은 MyProfile 클래스를 작성한다.
+
+```java
+public class MyProfile {
+	public static void main (String[] args) {
+    	System.out.println("김지영");
+        System.out.println("~~@naver.com");
+        System.out.println("여자");
+    }
+}
+```
+
+2. 실행한다.
+
+```
+김지영
+~~@naver.com
+여자
+```
+
+### main() 메소드 안의 내용은 차례대로 실행된다.
+
+- main() 메소드 안의 내용이 한줄씩 한줄씩 실행된다.
+- System.out.println("김지영");
+  - 위의 코드는 "김지영"이라는 이름을 출력한다.
+    - 그리고 줄바꿈을 하게 된다. 그렇기 때문에 다음 줄에 이메일이 출력된다.
+
+### println() 메소드를 print()로 바꿔보기
+
+```java
+public class MyProfile {
+	public static void main (String[] args) {
+    	System.out.print("김지영");
+        System.out.print("~~@naver.com");
+        System.out.print("여자");
+    }
+}
+```
+
+- 위와 같이 코드를 수정한 후 실행한 결과는 다음과 같다.
+  `김지영~~@naver.com여자`
+
+### print() 메소드는 줄바꿈을 하지 않는다.
+
+- println() 메소드는 괄호 안의 내용을 출력하고 줄바꿈을 하지만, print() 메소드는 괄호 안의 내용만 출력한다. 줄바꿈을 하지 않는다.
+- `System.out.println();`는 아무것도 출력하지 않고 줄바꿈만 한다.
+
+### 연습
+
+- 다음과 같은 결과를 출력하는 Rectangle 클래스를 작성한다. (너비가 별 10개, 높이가 별 10개인 사각형)
+
+```
+**********
+**********
+**********
+**********
+**********
+**********
+**********
+**********
+**********
+**********
+```
+
+```java
+public class Practice {
+    public static void main (String[] args) {
+        System.out.println("**********");
+        System.out.println("**********");
+        System.out.println("**********");
+        System.out.println("**********");
+        System.out.println("**********");
+        System.out.println("**********");
+        System.out.println("**********");
+        System.out.println("**********");
+        System.out.println("**********");
+        System.out.println("**********");
+    }
+}
+```
+
+### 높이가 200인 사각형을 출력하려면?
+
+- 만약 높이가 10,000인 사각형을 출력하라고 문제가 바뀐다면?
+- 컴퓨터가 가장 잘하는 일은 반복하는 일이다.
+
+### while 반복문을 이용해 높이가 10인 사각형 출력하기
+
+- 다음과 같이 Rectangle2 클래스를 작성한다.
+
+```java
+public class Rectangle2 {
+	public static void main (String[] args) {
+    	int i = 1;
+        while(i <= 10) {
+        	System.out.println("**********");
+            i = i + 1;
+        }
+    }
+}
+```
+
+### while 반복문
+
+- main 메소드 안의 내용은 한줄씩 실행해 나간다. JVM이 한줄씩 읽어나가면서 해석하고 실행한다.
+- 정수 타입(type) 변수 i에 1을 저장한다. 자바 프로그래밍에서 =는 `같다.`라는 의미가 아니라, 우측의 값을 좌측에 저장한다는 의미이다.
+  `int i = 1`
+- while(i <= 10)은 i가 10보다 작거나 같을 때까지 중괄호 안의 내용을 반복하라는 의미이다. 이 부분을 while 블록(block)이라고 읽는다. 중괄호 부분을 블록이라고 한다. 즉, i가 10보다 크다면 반복하지 말라는 이야기이다.
+- 괄호 안의 `i = i + 1`은 i에 저장된 값에 1을 더한 후 다시 i에 저장하라는 뜻이다.
+
+```java
+while (i <= 10) {
+	...
+    i = i + 1;
+}
+```
+
+- 즉 아래의 코드는 i는 1부터 시작해서 while 블록 안의 내용을 반복할 때마다 i를 1씩 증가시키라는 의미이다.
+- 이 때 i가 10보다 작거나 같을 경우는 계속 반복하게 된다. 어느 시점에 i가 11이 되는 경우가 발생하는데, 이 때는 while 블록을 종료하게 되고, 그 다음 줄을 실행하게 된다.
+
+```java
+int i = 1;
+while(i <= 10){
+	System.out.println("**********");
+    i = i + 1;
+}
+```
+
+### 연습
+
+- 높이가 1000인 사각형을 출력하자.
+
+```java
+public class Practice {
+    public static void main (String[] args) {
+        int i = 1;
+        while (i <= 1000) {
+            System.out.println("**********");
+            i = i + 1;
+        }
+    }
+}
+```
