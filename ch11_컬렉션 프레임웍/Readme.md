@@ -256,4 +256,49 @@ capacity: 12
 - 링크드 리스트(Linked list)는 이러한 배열의 단점을 보완하기 위해 모든 데이터가 연속적으로 존재하는 배열과 달리 **불연속적으로 존재하는 데이터를 서로 연결(link)한 형태**로 구성되어 있다.
 - 배열과 링크드 리스트
   ![배열과 링크드 리스트](https://velog.velcdn.com/images/ji01217/post/a24c11e2-4e37-4246-8ba5-48a747660f3c/image.png)
-- 링크드 리스트의 각 요소(node)들은 자신과 연결된 
+- 링크드 리스트의 각 요소(node)들은 자신과 연결된 다음 요소에 대한 참조(주소값)와 데이터로 구성되어 있다.
+
+```java
+class Node {
+	Node next; // 다음 요소의 주소를 저장
+    Object obj; // 데이터를 저장
+}
+```
+- 데이터 삭제는 삭제하고자 하는 요소의 이전요소가 삭제하고자 하는 요소의 다음 요소를 참조하도록 변경한다. 데이터를 복사하는 과정이 없기 때문에 처리속도가 매우 빠르다.
+- 데이터 추가는 새로운 요소를 생성한 다음 추가하고자 하는 위치의 이전 요소의 참조를 새로운 요소에 대한 참조로 변경해주고, 새로운 요소가 그 다음 요소를 참조하도록 변경한다.
+- 링크드 리스트는 이동방향이 단방향이기 때문에 다음 요소에 대한 접근은 쉽지만 이전 요소에 대한 접근은 어렵다. 이 점을 보완한 것이 **더블 링크드 리스트(이중 연결리스트, doubly linked list)**이다.
+- 더블 링크드 리스트는 링크드 리스트에 참조변수를 하나 더 추가하여 다음 요소와 이전 요소에 대한 참조가 모두 가능하도록 한 것이다.
+```java
+class Node {
+	Node next; // 다음 요소의 주소를 저장
+    Node previous; // 이전 요소의 주소를 저장
+    Object obj; // 데이터를 저장
+}
+```
+- **더블 써큘러 링크드 리스트(이중 원형 연결리스트, doubly circular linked list)**는 더블 링크드 리스트의 첫 번째 요소와 마지막 요소를 서로 연결시킨 것
+- ArrayList와 LinkedList의 비교
+>순차적으로 추가/삭제하는 경우에는 ArrayList가 LinkedList보다 빠르다.
+>중간 데이터를 추가/삭제하는 경우에는 LinkedList가 ArrayList보다 빠르다.
+>![ArrayList와 LinkedList의 비교](https://velog.velcdn.com/images/ji01217/post/4a7c888e-b1d4-498c-96a4-350e58ab9482/image.png)
+
+- 다루고자 하는 데이터의 개수가 변하지 않는 경우라면, ArrayList가 더 적합하지만, 데이터 개수의 변경이 잦다면 LinkedList를 사용하는 것이 더 적합하다.
+- 두 클래스의 장점을 이용해서 두 클래스를 조합해서 사용하는 방법도 가능하다. 처음에 작업하기 전에 데이터를 저장할 때는 ArrayList를 사용한 다음, 작업할 때는 LinkedList로 데이터를 옮겨서 작업한다.
+```java
+ArrayList al = new ArrayList(100000);
+for (int i = 0; i < 100000; i++) al.add(i+"");
+
+LinkedList ll= new LinkedList(al);
+for (int i = 0; i< 1000; i++) ll.add(500, "X"):
+```
+## 4. Stack과 Queue
+### 스택
+- 마지막에 저장한 데이터를 가장 먼저 꺼내는 LIFO(Last In First Out)
+
+### 큐
+- 처음에 저장한 데이터를 가장 먼저 꺼내는 FIFO(First In First Out)
+  ![스택(stack)과 큐(queue)](https://velog.velcdn.com/images/ji01217/post/8076c9bc-a056-45e2-a93b-12dbcf7f8eff/image.png)
+  => 순차적으로 데이터를 추가하고 삭제하는 `스택`은 `ArrayList`와 같은 배열기반의 컬렉션 클래스가 적합하고, 데이터를 꺼낼 때 항상 첫 번째 저장된 데이터를 삭제하는 `큐`는 데이터 추가/삭제가 쉬운 `LinkedList`로 구현하는 것이 더 적합하다.
+- Stack의 메서드
+  ![Stack의 메서드](https://velog.velcdn.com/images/ji01217/post/da352362-7a67-422b-81cb-bd4fc645cc23/image.png)
+- Queue의 메서드
+  ![Queue의 메서드](https://velog.velcdn.com/images/ji01217/post/c88c661f-5305-4e08-9c6d-4aaacd495361/image.png)
